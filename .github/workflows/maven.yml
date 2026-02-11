@@ -20,6 +20,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Make mvnw executable
+        run: chmod +x mvnw
+
       - name: Build with Maven
         # Wir überspringen hier vorerst die Tests (-DskipTests),
         # da wir noch keine Datenbank-Config haben und der Build sonst fehlschlägt.
