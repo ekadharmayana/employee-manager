@@ -1,4 +1,4 @@
-package com.ultimindz.employee_manager;
+package com.ultimindz.employeeManager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

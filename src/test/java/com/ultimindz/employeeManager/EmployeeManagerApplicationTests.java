@@ -1,4 +1,4 @@
-package com.ultimindz.employee_manager;
+package com.ultimindz.employeeManager;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
