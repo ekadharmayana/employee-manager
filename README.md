@@ -15,6 +15,7 @@ Built with **modern Java standards**, focusing on clean architecture, separation
 * **DTO Pattern:** Uses Data Transfer Objects to decouple the internal database model from the public API (hiding sensitive data).
 * **Global Error Handling:** Centralized exception handling returning structured JSON errors (RFC 7807).
 * **Containerization:** Fully Dockerized database setup for easy local development.
+* * **Automated Testing:** Unit tests with JUnit 5 and Mockito.
 * **CI/CD:** Automated build and verification pipeline using GitHub Actions.
 ---
 
@@ -61,6 +62,17 @@ mvnw spring-boot:run
 The API will start at: `http://localhost:8080`
 
 ---
+
+## 🧪 Running Tests
+This project uses **JUnit 5 and Mockito** for unit testing to ensure business logic reliability.
+
+To run all tests via terminal:
+```
+./mvnw test
+```
+
+Note: This will execute the build process and run all defined test cases, providing summary of passes and failures.
+
 
 ## 🔌API Documentation
 You can test the API using Postman, curl, or any HTTP client.
