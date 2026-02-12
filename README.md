@@ -75,8 +75,14 @@ Note: This will execute the build process and run all defined test cases, provid
 
 
 ## 🔌API Documentation
-You can test the API using Postman, curl, or any HTTP client.
 
+### 📖 Interactive Swagger UI
+The project includes **Swagger UI** for interactive API exploration.
+Once the application is running, access the live documentation here:
+
+👉 **[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)**
+
+You can test the API using Postman, curl, or any HTTP client.
 ### Endpoints
 | Method | Endpoints | Description | Status Code |
 |--------|-----------|-------------|-------------|
