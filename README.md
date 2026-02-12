@@ -89,6 +89,8 @@ You can test the API using Postman, curl, or any HTTP client.
 | `GET`  | `/api/employees` | Retrieve a list of all employee | 200 OK |
 | `GET` | `/api/employees/{id}` | Get specific employee details | 200 OK / 404 |
 | `POST` | `/api/employees` | Create a new employee | 201 Created |
+| `PUT` | `/api/employees/{id}` | Update an existing employee | 200 OK / 404 |
+| `DELETE` | `/api/employees/{id}` | Delete an employee | 204 No Content |
 
 ### 📝 JSON Examples
 ### Create Employee (Request)

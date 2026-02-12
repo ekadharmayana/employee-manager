@@ -62,4 +62,28 @@ public class EmployeeController {
         EmployeeDTO employeeDTO = employeeService.getEmployeeById(id);
         return ResponseEntity.ok(employeeDTO);
     }
+
+    @Operation(summary = "Update an employee", description = "Updates an existing employee's details based on the ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Employee updated successfully",
+                    content = @Content(schema = @Schema(implementation = EmployeeDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Employee not found", content = @Content)
+    })
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeDTO> updateEmployee(@PathVariable Long id, @RequestBody EmployeeDTO employeeDTO) {
+        EmployeeDTO updatedEmployee = employeeService.updateEmployee(id, employeeDTO);
+        return ResponseEntity.ok(updatedEmployee);
+    }
+
+    @Operation(summary = "Delete an employee", description = "Deletes an employee by their ID.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "204", description = "Employee deleted successfully"),
+            @ApiResponse(responseCode = "404", description = "Employee not found", content = @Content)
+    })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
+        employeeService.deleteEmployee(id);
+        // for now no Content because no data
+        return ResponseEntity.noContent().build();
+    }
 }
