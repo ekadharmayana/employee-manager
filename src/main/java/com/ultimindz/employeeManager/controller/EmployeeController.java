@@ -2,12 +2,19 @@ package com.ultimindz.employeeManager.controller;
 
 import com.ultimindz.employeeManager.dto.EmployeeDTO;
 import com.ultimindz.employeeManager.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Employee", description = "Employee management APIs")
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
@@ -18,6 +25,15 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    @Operation(
+            summary = "Create a new employee",
+            description = "Creates a new employee and returns the created object including the generated ID."
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Employee created successfully",
+                    content = @Content(schema = @Schema(implementation = EmployeeDTO.class))),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")
+    })
     @PostMapping
     public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeDTO employeeDTO){
         EmployeeDTO savedEmployee = employeeService.createEmployee(employeeDTO);
@@ -25,12 +41,22 @@ public class EmployeeController {
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Retrieve all employees", description = "Get a list of all registered employees.")
+    @ApiResponse(responseCode = "200", description = "List of employees retrieved")
     @GetMapping
     public ResponseEntity<List<EmployeeDTO>> getAllEmployee(){
         List<EmployeeDTO> employees = employeeService.getAllEmployees();
         return ResponseEntity.ok(employees);
     }
 
+    @Operation(summary = "Get an employee by ID", description = "Returns a single employee based on the ID provided.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Employee found",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = EmployeeDTO.class))),
+            @ApiResponse(responseCode = "404", description = "Employee not found",
+                    content = @Content) // No Content when 404
+    })
     @GetMapping("/{id}")
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id) {
         EmployeeDTO employeeDTO = employeeService.getEmployeeById(id);
