@@ -15,7 +15,7 @@ Built with **modern Java standards**, focusing on clean architecture, separation
 * **DTO Pattern:** Uses Data Transfer Objects to decouple the internal database model from the public API (hiding sensitive data).
 * **Global Error Handling:** Centralized exception handling returning structured JSON errors (RFC 7807).
 * **Containerization:** Fully Dockerized database setup for easy local development.
-* * **Automated Testing:** Unit tests with JUnit 5 and Mockito.
+* **Automated Testing:** Unit tests with JUnit 5 and Mockito.
 * **CI/CD:** Automated build and verification pipeline using GitHub Actions.
 ---
 
