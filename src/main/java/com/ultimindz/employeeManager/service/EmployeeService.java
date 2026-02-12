@@ -2,6 +2,7 @@ package com.ultimindz.employeeManager.service;
 
 import com.ultimindz.employeeManager.dto.EmployeeDTO;
 import com.ultimindz.employeeManager.entity.Employee;
+import com.ultimindz.employeeManager.exception.NotFoundException;
 import com.ultimindz.employeeManager.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,13 @@ public class EmployeeService {
         Employee savedEmployee = employeeRepository.save(employee);
 
         return mapToDTO(savedEmployee);
+    }
+
+    public EmployeeDTO getEmployeeById(Long employeeId){
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new NotFoundException("Employee not found with id: " + employeeId));
+
+        return mapToDTO(employee);
     }
 
     public List<EmployeeDTO> getAllEmployees(){
